@@ -342,17 +342,38 @@
       margin-bottom: 1.5rem;
       cursor: none;
     }
-    .work-featured img {
-      position: absolute; inset: 0;
-      width: 100%; height: 100%; object-fit: cover;
-      filter: brightness(.55) saturate(.85);
-      transition: transform .8s var(--ease), filter .6s;
+    .vis-featured { background: linear-gradient(135deg, #14122a, #0d0b1a, #100e20); }
+    .vis-featured .vis-overlay {
+      position: absolute; inset: 0; z-index: 1;
+      display: flex; align-items: center; justify-content: center;
+      pointer-events: none;
     }
-    .work-featured:hover img { transform: scale(1.04); filter: brightness(.65) saturate(1); }
-    .work-featured::after {
-      content: ''; position: absolute; inset: 0;
+    .vis-featured .particle {
+      position: absolute; border-radius: 50%;
+      background: rgba(99,102,241,.3);
+    }
+    .vis-featured .particle:nth-child(1) { width: 6px; height: 6px; top: 20%; left: 15%; }
+    .vis-featured .particle:nth-child(2) { width: 4px; height: 4px; top: 40%; left: 75%; background: rgba(245,158,11,.3); }
+    .vis-featured .particle:nth-child(3) { width: 8px; height: 8px; top: 60%; left: 30%; }
+    .vis-featured .particle:nth-child(4) { width: 3px; height: 3px; top: 30%; left: 55%; background: rgba(129,140,248,.3); }
+    .vis-featured .particle:nth-child(5) { width: 5px; height: 5px; top: 70%; left: 65%; }
+    .vis-featured .particle:nth-child(6) { width: 7px; height: 7px; top: 15%; left: 80%; background: rgba(245,158,11,.2); }
+    .vis-featured .particle:nth-child(7) { width: 4px; height: 4px; top: 50%; left: 45%; }
+    .vis-featured .particle:nth-child(8) { width: 6px; height: 6px; top: 80%; left: 20%; background: rgba(129,140,248,.2); }
+    .vis-featured .particle:nth-child(9) { width: 3px; height: 3px; top: 25%; left: 90%; }
+    .vis-featured .particle:nth-child(10) { width: 5px; height: 5px; top: 65%; left: 85%; background: rgba(99,102,241,.2); }
+    .vis-featured .vis-line {
+      position: absolute; height: 1px;
+      background: rgba(99,102,241,.08);
+    }
+    .vis-featured .vis-line:nth-child(11) { top: 22%; left: 16%; width: 140px; transform: rotate(18deg); }
+    .vis-featured .vis-line:nth-child(12) { top: 42%; left: 56%; width: 100px; transform: rotate(-25deg); }
+    .vis-featured .vis-line:nth-child(13) { top: 62%; left: 31%; width: 120px; transform: rotate(8deg); }
+    .vis-featured .vis-line:nth-child(14) { top: 32%; left: 76%; width: 80px; transform: rotate(-12deg); }
+    .vis-featured::after {
+      content: ''; position: absolute; inset: 0; z-index: 2;
       background: linear-gradient(to top, rgba(9,9,11,.85) 0%, rgba(9,9,11,.2) 50%, transparent 100%);
-      pointer-events: none; z-index: 1;
+      pointer-events: none;
     }
     .work-featured-content {
       position: absolute; inset: 0;
@@ -423,14 +444,103 @@
     .work-card-visual img {
       width: 100%; height: 100%; object-fit: cover;
       transition: transform .6s var(--ease);
-      filter: brightness(.75) saturate(.9);
+      filter: brightness(.8) saturate(.9);
     }
     .work-card:hover .work-card-visual img { transform: scale(1.06); }
     .work-card-visual::after {
       content: ''; position: absolute; inset: 0;
-      background: linear-gradient(to top, rgba(9,9,11,.7) 0%, transparent 50%);
+      background: linear-gradient(to top, rgba(9,9,11,.65) 0%, transparent 50%);
       pointer-events: none;
     }
+
+    /* Category-specific visual overlays */
+    .vis-overlay {
+      position: absolute; inset: 0; z-index: 1;
+      display: flex; align-items: center; justify-content: center;
+      pointer-events: none;
+    }
+
+    /* Scrollytelling — code lines */
+    .vis-scroll { background: linear-gradient(135deg, #12101f, #0e0c18); }
+    .vis-scroll .vis-overlay { flex-direction: column; align-items: flex-start; padding: 2rem; gap: .5rem; }
+    .vis-scroll .code-line {
+      height: 6px; border-radius: 3px;
+      background: rgba(99,102,241,.25);
+    }
+    .vis-scroll .code-line:nth-child(1) { width: 55%; }
+    .vis-scroll .code-line:nth-child(2) { width: 75%; background: rgba(99,102,241,.18); }
+    .vis-scroll .code-line:nth-child(3) { width: 40%; background: rgba(129,140,248,.2); }
+    .vis-scroll .code-line:nth-child(4) { width: 65%; background: rgba(99,102,241,.15); }
+    .vis-scroll .code-line:nth-child(5) { width: 30%; background: rgba(245,158,11,.15); }
+    .vis-scroll .code-line:nth-child(6) { width: 80%; background: rgba(99,102,241,.12); }
+    .vis-scroll .code-line:nth-child(7) { width: 50%; background: rgba(129,140,248,.18); }
+    .vis-scroll .code-line:nth-child(8) { width: 60%; background: rgba(99,102,241,.2); }
+
+    /* UI Motion — dashboard mock */
+    .vis-ui { background: linear-gradient(135deg, #0f0d1a, #111020); }
+    .vis-ui .vis-overlay {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 8px; padding: 1.5rem;
+    }
+    .vis-ui .ui-block {
+      background: rgba(99,102,241,.08);
+      border: 1px solid rgba(99,102,241,.1);
+      border-radius: 6px;
+    }
+    .vis-ui .ui-block.wide { grid-column: span 2; }
+    .vis-ui .ui-block.tall { grid-row: span 2; }
+    .vis-ui .ui-block.accent { background: rgba(99,102,241,.15); border-color: rgba(99,102,241,.2); }
+
+    /* Data Viz — graph nodes */
+    .vis-data { background: linear-gradient(135deg, #10101c, #0d0b18); }
+    .vis-data .vis-overlay { position: relative; }
+    .vis-data .node {
+      position: absolute; border-radius: 50%;
+      background: rgba(99,102,241,.3);
+      border: 1px solid rgba(99,102,241,.25);
+    }
+    .vis-data .node:nth-child(1) { width: 18px; height: 18px; top: 30%; left: 25%; }
+    .vis-data .node:nth-child(2) { width: 12px; height: 12px; top: 55%; left: 45%; }
+    .vis-data .node:nth-child(3) { width: 15px; height: 15px; top: 20%; left: 60%; }
+    .vis-data .node:nth-child(4) { width: 10px; height: 10px; top: 65%; left: 70%; }
+    .vis-data .node:nth-child(5) { width: 14px; height: 14px; top: 40%; left: 35%; background: rgba(245,158,11,.3); border-color: rgba(245,158,11,.25); }
+    .vis-data .node:nth-child(6) { width: 8px; height: 8px; top: 75%; left: 20%; }
+    .vis-data .node:nth-child(7) { width: 11px; height: 11px; top: 15%; left: 80%; }
+    .vis-data .line {
+      position: absolute; height: 1px;
+      background: rgba(99,102,241,.15);
+      transform-origin: left center;
+    }
+    .vis-data .line:nth-child(8) { top: 33%; left: 27%; width: 120px; transform: rotate(25deg); }
+    .vis-data .line:nth-child(9) { top: 57%; left: 47%; width: 100px; transform: rotate(-15deg); }
+    .vis-data .line:nth-child(10) { top: 22%; left: 62%; width: 80px; transform: rotate(40deg); }
+    .vis-data .line:nth-child(11) { top: 42%; left: 37%; width: 90px; transform: rotate(-30deg); }
+
+    /* Brand Motion — logo shapes */
+    .vis-brand { background: linear-gradient(135deg, #141222, #0e0c1a); }
+    .vis-brand .vis-overlay { position: relative; }
+    .vis-brand .shape {
+      position: absolute; border-radius: 50%;
+      border: 2px solid rgba(99,102,241,.2);
+    }
+    .vis-brand .shape:nth-child(1) { width: 80px; height: 80px; top: 25%; left: 30%; border-color: rgba(99,102,241,.3); }
+    .vis-brand .shape:nth-child(2) { width: 50px; height: 50px; top: 40%; left: 55%; border-color: rgba(129,140,248,.25); }
+    .vis-brand .shape:nth-child(3) { width: 30px; height: 30px; top: 60%; left: 35%; border-color: rgba(245,158,11,.2); background: rgba(245,158,11,.08); }
+    .vis-brand .shape:nth-child(4) { width: 60px; height: 60px; top: 30%; left: 65%; border-color: rgba(99,102,241,.15); border-radius: 12px; transform: rotate(45deg); }
+
+    /* 3D Landing — wireframe */
+    .vis-3d { background: linear-gradient(135deg, #11101e, #0c0a17); }
+    .vis-3d .vis-overlay { position: relative; perspective: 400px; }
+    .vis-3d .wire {
+      position: absolute;
+      border: 1px solid rgba(99,102,241,.2);
+      border-radius: 4px;
+    }
+    .vis-3d .wire:nth-child(1) { width: 120px; height: 80px; top: 25%; left: 20%; transform: rotateY(15deg) rotateX(-5deg); border-color: rgba(99,102,241,.3); }
+    .vis-3d .wire:nth-child(2) { width: 90px; height: 60px; top: 40%; left: 50%; transform: rotateY(-20deg) rotateX(10deg); border-color: rgba(129,140,248,.2); }
+    .vis-3d .wire:nth-child(3) { width: 70px; height: 50px; top: 55%; left: 30%; transform: rotateY(10deg) rotateX(-15deg); border-color: rgba(245,158,11,.15); }
 
     .work-card-info { padding: 1.25rem; }
     .work-card-tag {
@@ -836,7 +946,15 @@
     <!-- Featured -->
     <div class="work-featured cur-card-target tilt-card">
       <div class="tilt-card-shadow"></div>
-      <img src="https://picsum.photos/seed/crams-hero/1400/600" alt="Particle Universe" loading="lazy">
+      <div class="vis-featured">
+        <div class="vis-overlay">
+          <div class="particle"></div><div class="particle"></div><div class="particle"></div>
+          <div class="particle"></div><div class="particle"></div><div class="particle"></div>
+          <div class="particle"></div><div class="particle"></div><div class="particle"></div>
+          <div class="particle"></div>
+          <div class="vis-line"></div><div class="vis-line"></div><div class="vis-line"></div><div class="vis-line"></div>
+        </div>
+      </div>
       <div class="work-featured-content">
         <div class="work-featured-tag">Featured / WebGL</div>
         <div class="work-featured-name">Particle Universe</div>
@@ -851,7 +969,13 @@
     <div class="work-grid">
       <div class="work-card span-5 cur-card-target tilt-card">
         <div class="tilt-card-shadow"></div>
-        <div class="work-card-visual"><img src="https://picsum.photos/seed/crams-p2/800/500" alt="Brand Narrative" loading="lazy"></div>
+        <div class="work-card-visual vis-scroll">
+          <div class="vis-overlay">
+            <div class="code-line"></div><div class="code-line"></div><div class="code-line"></div>
+            <div class="code-line"></div><div class="code-line"></div><div class="code-line"></div>
+            <div class="code-line"></div><div class="code-line"></div>
+          </div>
+        </div>
         <div class="work-card-info">
           <div class="work-card-tag">Scrollytelling</div>
           <div class="work-card-name">Brand Narrative</div>
@@ -859,7 +983,12 @@
       </div>
       <div class="work-card span-7 cur-card-target tilt-card">
         <div class="tilt-card-shadow"></div>
-        <div class="work-card-visual"><img src="https://picsum.photos/seed/crams-p3/800/500" alt="Dashboard Experience" loading="lazy"></div>
+        <div class="work-card-visual vis-ui">
+          <div class="vis-overlay">
+            <div class="ui-block wide"></div><div class="ui-block accent"></div>
+            <div class="ui-block tall accent"></div><div class="ui-block"></div><div class="ui-block wide"></div>
+          </div>
+        </div>
         <div class="work-card-info">
           <div class="work-card-tag">UI Motion</div>
           <div class="work-card-name">Dashboard Experience</div>
@@ -867,7 +996,13 @@
       </div>
       <div class="work-card span-4 cur-card-target tilt-card">
         <div class="tilt-card-shadow"></div>
-        <div class="work-card-visual"><img src="https://picsum.photos/seed/crams-p4/800/500" alt="Network Graph" loading="lazy"></div>
+        <div class="work-card-visual vis-data">
+          <div class="vis-overlay">
+            <div class="node"></div><div class="node"></div><div class="node"></div>
+            <div class="node"></div><div class="node"></div><div class="node"></div><div class="node"></div>
+            <div class="line"></div><div class="line"></div><div class="line"></div><div class="line"></div>
+          </div>
+        </div>
         <div class="work-card-info">
           <div class="work-card-tag">Data Viz</div>
           <div class="work-card-name">Network Graph</div>
@@ -875,7 +1010,11 @@
       </div>
       <div class="work-card span-4 cur-card-target tilt-card">
         <div class="tilt-card-shadow"></div>
-        <div class="work-card-visual"><img src="https://picsum.photos/seed/crams-p5/800/500" alt="Motion Identity" loading="lazy"></div>
+        <div class="work-card-visual vis-brand">
+          <div class="vis-overlay">
+            <div class="shape"></div><div class="shape"></div><div class="shape"></div><div class="shape"></div>
+          </div>
+        </div>
         <div class="work-card-info">
           <div class="work-card-tag">Brand Motion</div>
           <div class="work-card-name">Motion Identity</div>
@@ -883,7 +1022,11 @@
       </div>
       <div class="work-card span-4 cur-card-target tilt-card">
         <div class="tilt-card-shadow"></div>
-        <div class="work-card-visual"><img src="https://picsum.photos/seed/crams-p6/800/500" alt="Immersive Landing" loading="lazy"></div>
+        <div class="work-card-visual vis-3d">
+          <div class="vis-overlay">
+            <div class="wire"></div><div class="wire"></div><div class="wire"></div>
+          </div>
+        </div>
         <div class="work-card-info">
           <div class="work-card-tag">3D</div>
           <div class="work-card-name">Immersive Landing</div>
