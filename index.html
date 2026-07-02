@@ -342,27 +342,18 @@
       margin-bottom: 1.5rem;
       cursor: none;
     }
-    .work-featured-bg {
+    .work-featured img {
       position: absolute; inset: 0;
-      background: linear-gradient(135deg, #1a1625 0%, #0d0b14 40%, #0f0a1a 100%);
+      width: 100%; height: 100%; object-fit: cover;
+      filter: brightness(.55) saturate(.85);
+      transition: transform .8s var(--ease), filter .6s;
     }
-    .work-featured-bg::before {
-      content: '';
-      position: absolute; inset: 0;
-      background:
-        radial-gradient(ellipse 40% 60% at 70% 30%, rgba(99,102,241,.15), transparent),
-        radial-gradient(ellipse 30% 40% at 20% 70%, rgba(99,102,241,.06), transparent);
+    .work-featured:hover img { transform: scale(1.04); filter: brightness(.65) saturate(1); }
+    .work-featured::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(9,9,11,.85) 0%, rgba(9,9,11,.2) 50%, transparent 100%);
+      pointer-events: none; z-index: 1;
     }
-    .work-featured-grid {
-      position: absolute; inset: 0;
-      background-image:
-        linear-gradient(rgba(99,102,241,.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(99,102,241,.03) 1px, transparent 1px);
-      background-size: 60px 60px;
-      opacity: 0;
-      transition: opacity .6s;
-    }
-    .work-featured:hover .work-featured-grid { opacity: 1; }
     .work-featured-content {
       position: absolute; inset: 0;
       display: flex; flex-direction: column;
@@ -429,19 +420,17 @@
       width: 100%; aspect-ratio: 16/10;
       position: relative; overflow: hidden;
     }
-    .work-card-visual-bg {
-      position: absolute; inset: 0;
+    .work-card-visual img {
+      width: 100%; height: 100%; object-fit: cover;
       transition: transform .6s var(--ease);
+      filter: brightness(.75) saturate(.9);
     }
-    .work-card:hover .work-card-visual-bg { transform: scale(1.06); }
-    .wc-bg-1 { background: linear-gradient(135deg, #1a1535, #0f0d1a); }
-    .wc-bg-1::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 30% 40%, rgba(99,102,241,.2), transparent 60%); }
-    .wc-bg-2 { background: linear-gradient(135deg, #151225, #0d0a18); }
-    .wc-bg-2::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 70% 60%, rgba(99,102,241,.15), transparent 60%); }
-    .wc-bg-3 { background: linear-gradient(135deg, #181428, #0e0c1c); }
-    .wc-bg-3::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 50% 30%, rgba(129,140,248,.12), transparent 50%); }
-    .wc-bg-4 { background: linear-gradient(135deg, #141120, #0b0916); }
-    .wc-bg-4::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 40% 70%, rgba(99,102,241,.18), transparent 55%); }
+    .work-card:hover .work-card-visual img { transform: scale(1.06); }
+    .work-card-visual::after {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(9,9,11,.7) 0%, transparent 50%);
+      pointer-events: none;
+    }
 
     .work-card-info { padding: 1.25rem; }
     .work-card-tag {
@@ -847,8 +836,7 @@
     <!-- Featured -->
     <div class="work-featured cur-card-target tilt-card">
       <div class="tilt-card-shadow"></div>
-      <div class="work-featured-bg"></div>
-      <div class="work-featured-grid"></div>
+      <img src="https://picsum.photos/seed/crams-hero/1400/600" alt="Particle Universe" loading="lazy">
       <div class="work-featured-content">
         <div class="work-featured-tag">Featured / WebGL</div>
         <div class="work-featured-name">Particle Universe</div>
@@ -863,7 +851,7 @@
     <div class="work-grid">
       <div class="work-card span-5 cur-card-target tilt-card">
         <div class="tilt-card-shadow"></div>
-        <div class="work-card-visual"><div class="work-card-visual-bg wc-bg-1"></div></div>
+        <div class="work-card-visual"><img src="https://picsum.photos/seed/crams-p2/800/500" alt="Brand Narrative" loading="lazy"></div>
         <div class="work-card-info">
           <div class="work-card-tag">Scrollytelling</div>
           <div class="work-card-name">Brand Narrative</div>
@@ -871,7 +859,7 @@
       </div>
       <div class="work-card span-7 cur-card-target tilt-card">
         <div class="tilt-card-shadow"></div>
-        <div class="work-card-visual"><div class="work-card-visual-bg wc-bg-2"></div></div>
+        <div class="work-card-visual"><img src="https://picsum.photos/seed/crams-p3/800/500" alt="Dashboard Experience" loading="lazy"></div>
         <div class="work-card-info">
           <div class="work-card-tag">UI Motion</div>
           <div class="work-card-name">Dashboard Experience</div>
@@ -879,7 +867,7 @@
       </div>
       <div class="work-card span-4 cur-card-target tilt-card">
         <div class="tilt-card-shadow"></div>
-        <div class="work-card-visual"><div class="work-card-visual-bg wc-bg-3"></div></div>
+        <div class="work-card-visual"><img src="https://picsum.photos/seed/crams-p4/800/500" alt="Network Graph" loading="lazy"></div>
         <div class="work-card-info">
           <div class="work-card-tag">Data Viz</div>
           <div class="work-card-name">Network Graph</div>
@@ -887,7 +875,7 @@
       </div>
       <div class="work-card span-4 cur-card-target tilt-card">
         <div class="tilt-card-shadow"></div>
-        <div class="work-card-visual"><div class="work-card-visual-bg wc-bg-4"></div></div>
+        <div class="work-card-visual"><img src="https://picsum.photos/seed/crams-p5/800/500" alt="Motion Identity" loading="lazy"></div>
         <div class="work-card-info">
           <div class="work-card-tag">Brand Motion</div>
           <div class="work-card-name">Motion Identity</div>
@@ -895,7 +883,7 @@
       </div>
       <div class="work-card span-4 cur-card-target tilt-card">
         <div class="tilt-card-shadow"></div>
-        <div class="work-card-visual"><div class="work-card-visual-bg wc-bg-1"></div></div>
+        <div class="work-card-visual"><img src="https://picsum.photos/seed/crams-p6/800/500" alt="Immersive Landing" loading="lazy"></div>
         <div class="work-card-info">
           <div class="work-card-tag">3D</div>
           <div class="work-card-name">Immersive Landing</div>
